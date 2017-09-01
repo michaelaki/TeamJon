@@ -33,12 +33,12 @@ public class Person1 {
 	 * @param input the string to be modified
 	 * @return the modified string
 	 */
-	private String calc(String input) {
-        String finish = input.substring(input.length() - 2);
-        finish += input.substring(0, input.length() - 2);
-	  //Person 1 put your implementation here
-	    return finish;
-	}
+	private static String calc(String input) {
+        String finish = input.substring(2);
+        finish += input.substring(0, 2);
+      //Person 1 put your implementation here
+        return finish;
+    }
 
 	/**
 	 * Return a string rep of this object
