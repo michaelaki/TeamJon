@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: Gradle Quickstart
-Class-Path: ../../lib/resources.jar
-Main-Class: edu.gatech.oad.antlab.pkg1.AntLabMain
-
