@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:text="Enter Your User Name and Password"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
     <EditText
         android:id="@+id/email_text"
         android:layout_width="match_parent"
@@ -11,7 +20,7 @@
         android:ems="10"
         android:layout_marginTop="16dp"
         android:inputType="textPersonName"
-        android:text="Email"
+        android:text="User Name"
         android:layout_weight="0.03" />
 
     <EditText
