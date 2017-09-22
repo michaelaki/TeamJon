@@ -17,19 +17,20 @@ public class User implements Parcelable {
     public String getPassword() { return password; }
     public void setPassword(String newPassword) { password = newPassword; }
 
+    /**
+     * 2-arg constructor that creates a User with an email and password
+     * @param newEmail User's email
+     * @param newPassword User's password
+     */
     public User(String newEmail, String newPassword) {
         email = newEmail;
         password = newPassword;
     }
 
-    public User(String newEmail) {
-        this(newEmail, null);
-    }
-
-    public User() {
-        this(null, null);
-    }
-
+    /**
+     * toString method used to visualize the User's email and password
+     * @return a String containing the User's email and password
+     */
     @Override
     public String toString() { return email + " | " + password; }
 

@@ -13,10 +13,9 @@ public class Model {
 
     private List<User> users;
 
-    private User currentUser;
-
     private Model() {
         users = new ArrayList<>();
+        addUser(new User("test","test"));
     }
 
     public List<User> getUsers() { return users; }
@@ -28,7 +27,4 @@ public class Model {
         users.add(tempUser);
         return true;
     }
-
-    public User getCurrentUser() { return currentUser; }
-    public void setCurrentUser(User tempUser) { currentUser = tempUser; }
 }

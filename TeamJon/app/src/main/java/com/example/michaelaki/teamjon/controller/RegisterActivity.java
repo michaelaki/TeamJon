@@ -48,8 +48,6 @@ public class RegisterActivity extends Activity {
                 register();
             }
         });
-
-        user = new User();
     }
 
     public void register() {
