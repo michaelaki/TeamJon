@@ -9,9 +9,12 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.michaelaki.teamjon.R;
+import com.example.michaelaki.teamjon.model.Admin;
 import com.example.michaelaki.teamjon.model.Model;
 import com.example.michaelaki.teamjon.model.User;
 
@@ -24,6 +27,7 @@ public class RegisterActivity extends Activity {
     private EditText passwordField;
 
     private User user;
+    private boolean admin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,30 @@ public class RegisterActivity extends Activity {
         });
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioAdmin:
+                if (checked)
+                    admin = true;
+                    break;
+            case R.id.radioUser:
+                if (checked)
+                    admin = false;
+                    break;
+        }
+    }
+
     public void register() {
         Model model = Model.getInstance();
-        user = new User(emailField.getText().toString(), passwordField.getText().toString());
+        if (admin) {
+            user = new Admin(emailField.getText().toString(), passwordField.getText().toString());
+        } else {
+            user = new User(emailField.getText().toString(), passwordField.getText().toString());
+        }
         model.addUser(user);
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
