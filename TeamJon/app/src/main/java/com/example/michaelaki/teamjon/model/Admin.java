@@ -6,19 +6,19 @@ package com.example.michaelaki.teamjon.model;
 
 public class Admin extends User {
     /**
-     * 2-arg constructor that creates a Admin with an email and password
+     * 2-arg constructor that creates a Admin with an username and password
      *
-     * @param newEmail    Admin's email
+     * @param newUsername    Admin's username
      * @param newPassword Admin's password
      */
-    public Admin(String newEmail, String newPassword) {
-        super(newEmail, newPassword);
+    public Admin(String newUsername, String newPassword) {
+        super(newUsername, newPassword);
     }
 
     /**
-     * toString method used to visualize the Admin's email and password
-     * @return a String containing the Admin's email and password
+     * toString method used to visualize the Admin's username and password
+     * @return a String containing the Admin's username and password
      */
     @Override
-    public String toString() { return "Admin: " + getEmail() + " | " + getPassword(); }
+    public String toString() { return "Admin: " + getUsername() + " | " + getPassword(); }
 }

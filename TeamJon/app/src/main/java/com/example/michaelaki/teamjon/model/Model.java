@@ -13,16 +13,28 @@ public class Model {
 
     private List<User> users;
 
+    /**
+     * No-arg constructor that creates an ArrayList of Users
+     */
     private Model() {
         users = new ArrayList<>();
         addUser(new User("test","test"));
     }
 
+    /**
+     * Getter for User ArrayList
+     * @return the ArrayList of Users
+     */
     public List<User> getUsers() { return users; }
 
+    /**
+     * Method to add a User to the ArrayList
+     * @param tempUser the User to be added to the ArrayList
+     * @return whether or not the User was successfully added
+     */
     public boolean addUser(User tempUser) {
         for (User c : users ) {
-            if (c.getEmail().equals(tempUser.getEmail())) return false;
+            if (c.getUsername().equals(tempUser.getUsername())) return false;
         }
         users.add(tempUser);
         return true;

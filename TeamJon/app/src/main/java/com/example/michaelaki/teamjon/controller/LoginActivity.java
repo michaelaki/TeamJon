@@ -98,7 +98,7 @@ public class LoginActivity extends Activity {
 
         int x = 0;
         while (x < model.getUsers().size() && !found) {
-            if (model.getUsers().get(x).getEmail().equals(email)
+            if (model.getUsers().get(x).getUsername().equals(email)
                     && model.getUsers().get(x).getPassword().equals(password)) {
                 Intent intent = new Intent(this, LaunchActivity.class);
                 intent.putExtra("Username", email);

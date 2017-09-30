@@ -8,22 +8,40 @@ import android.os.Parcelable;
  */
 
 public class User implements Parcelable {
-    private String email;
+    private String username;
     private String password;
 
-    public String getEmail() { return email; }
-    public void setEmail(String newEmail) { email = newEmail; }
+    /**
+     * Getter for username
+     * @return User's username
+     */
+    public String getUsername() { return username; }
 
+    /**
+     * Setter for username
+     * @param newUsername new username for User
+     */
+    public void setEmail(String newUsername) { username = newUsername; }
+
+    /**
+     * Getter for password
+     * @return User's password
+     */
     public String getPassword() { return password; }
+
+    /**
+     * Setter for password
+     * @param newPassword new password for User
+     */
     public void setPassword(String newPassword) { password = newPassword; }
 
     /**
      * 2-arg constructor that creates a User with an email and password
-     * @param newEmail User's email
+     * @param newUsername User's email
      * @param newPassword User's password
      */
-    public User(String newEmail, String newPassword) {
-        email = newEmail;
+    public User(String newUsername, String newPassword) {
+        username = newUsername;
         password = newPassword;
     }
 
@@ -32,12 +50,12 @@ public class User implements Parcelable {
      * @return a String containing the User's email and password
      */
     @Override
-    public String toString() { return email + " | " + password; }
+    public String toString() { return username + " | " + password; }
 
 
     /* ***************************************************** */
     private User(Parcel in) {
-        email = in.readString();
+        username = in.readString();
         password = in.readString();
     }
 
@@ -48,7 +66,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(email);
+        dest.writeString(username);
         dest.writeString(password);
     }
 
