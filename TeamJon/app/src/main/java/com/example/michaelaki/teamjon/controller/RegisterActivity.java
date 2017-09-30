@@ -52,6 +52,19 @@ public class RegisterActivity extends Activity {
                 register();
             }
         });
+
+        Button cancelButton = (Button) findViewById(R.id.cancelRegistrationButton);
+        cancelButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                returnToWelcomeScreen();
+            }
+        });
+    }
+
+    public void returnToWelcomeScreen() {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
     }
 
     public void onRadioButtonClicked(View view) {
