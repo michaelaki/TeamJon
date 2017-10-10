@@ -10,6 +10,14 @@
         android:text="Welcome"
         android:textSize="32dp"
         android:layout_marginBottom="16dp"/>
+    <TextView
+        android:id="@+id/adminText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:textSize="16dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"/>
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"

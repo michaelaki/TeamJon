@@ -25,6 +25,7 @@ import com.example.michaelaki.teamjon.model.User;
 public class RegisterActivity extends Activity {
     private EditText emailField;
     private EditText passwordField;
+    private EditText nameField;
 
     private User user;
     private boolean admin = false;
@@ -35,6 +36,7 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.activity_register);
         emailField = (EditText) findViewById(R.id.email_text);
         passwordField = (EditText) findViewById(R.id.password_text);
+        nameField = (EditText) findViewById(R.id.name_text);
         passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -87,9 +89,9 @@ public class RegisterActivity extends Activity {
     public void register() {
         Model model = Model.getInstance();
         if (admin) {
-            user = new Admin(emailField.getText().toString(), passwordField.getText().toString());
+            user = new Admin(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
         } else {
-            user = new User(emailField.getText().toString(), passwordField.getText().toString());
+            user = new User(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
         }
         model.addUser(user);
         Intent intent = new Intent(this, WelcomeActivity.class);
