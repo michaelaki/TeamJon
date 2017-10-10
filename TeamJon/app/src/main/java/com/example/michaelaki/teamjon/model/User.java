@@ -10,6 +10,7 @@ import android.os.Parcelable;
 public class User implements Parcelable {
     private String username;
     private String password;
+    private String name;
 
     /**
      * Getter for username
@@ -21,7 +22,7 @@ public class User implements Parcelable {
      * Setter for username
      * @param newUsername new username for User
      */
-    public void setEmail(String newUsername) { username = newUsername; }
+    public void setUsername(String newUsername) { username = newUsername; }
 
     /**
      * Getter for password
@@ -36,13 +37,26 @@ public class User implements Parcelable {
     public void setPassword(String newPassword) { password = newPassword; }
 
     /**
+     * Getter for name
+     * @return User's name
+     */
+    public String getName() { return name; }
+
+    /**
+     * Setter for name
+     * @param newName new name for User
+     */
+    public void setName(String newName) { name = newName; }
+
+    /**
      * 2-arg constructor that creates a User with an email and password
      * @param newUsername User's email
      * @param newPassword User's password
      */
-    public User(String newUsername, String newPassword) {
+    public User(String newUsername, String newPassword, String newName) {
         username = newUsername;
         password = newPassword;
+        name = newName;
     }
 
     /**
@@ -50,13 +64,14 @@ public class User implements Parcelable {
      * @return a String containing the User's email and password
      */
     @Override
-    public String toString() { return username + " | " + password; }
+    public String toString() { return name + " | " + username + " | " + password; }
 
 
     /* ***************************************************** */
     private User(Parcel in) {
         username = in.readString();
         password = in.readString();
+        name = in.readString();
     }
 
     @Override
@@ -68,6 +83,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(username);
         dest.writeString(password);
+        dest.writeString(name);
     }
 
     public static final Parcelable.Creator<User> CREATOR

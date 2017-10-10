@@ -21,7 +21,7 @@ public class LaunchActivity extends Activity {
         setContentView(R.layout.activity_launch);
 
         Intent intent = getIntent();
-        String user = intent.getStringExtra("Username");
+        String user = intent.getStringExtra("Name");
 
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {

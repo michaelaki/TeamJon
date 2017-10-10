@@ -10,9 +10,10 @@ public class Admin extends User {
      *
      * @param newUsername    Admin's username
      * @param newPassword Admin's password
+     * @param newName Admin's name
      */
-    public Admin(String newUsername, String newPassword) {
-        super(newUsername, newPassword);
+    public Admin(String newUsername, String newPassword, String newName) {
+        super(newUsername, newPassword, newName);
     }
 
     /**
@@ -20,5 +21,5 @@ public class Admin extends User {
      * @return a String containing the Admin's username and password
      */
     @Override
-    public String toString() { return "Admin: " + getUsername() + " | " + getPassword(); }
+    public String toString() { return "Admin: " + super.toString(); }
 }

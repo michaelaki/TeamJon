@@ -18,7 +18,6 @@ public class Model {
      */
     private Model() {
         users = new ArrayList<>();
-        addUser(new User("test","test"));
     }
 
     /**
