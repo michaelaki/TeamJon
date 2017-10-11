@@ -34,6 +34,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.LoginActivity" />
         </activity>
+        <activity android:name=".controller.ListActivity"
+            android:parentActivityName=".controller.LaunchActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.LoginActivity" />
+        </activity>
         <activity android:name=".controller.RegisterActivity"
             android:parentActivityName=".controller.WelcomeActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
