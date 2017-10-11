@@ -45,10 +45,6 @@ public class LaunchActivity extends Activity {
 
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
-
-        database = FirebaseDatabase.getInstance();
-        johnsRef = database.getReference("teamjon-6ebe0").child("1").child("City").getKey();
-        System.out.print(johnsRef);
     }
 
     public void logOut() {

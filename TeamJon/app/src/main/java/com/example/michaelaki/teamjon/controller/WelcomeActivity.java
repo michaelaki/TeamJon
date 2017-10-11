@@ -34,11 +34,17 @@ public class WelcomeActivity extends Activity {
         });
     }
 
+    /**
+     * Go to the login screen
+     */
     public void goToLoginScreen() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Go to register new user screen
+     */
     public void goToRegisterScreen() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);

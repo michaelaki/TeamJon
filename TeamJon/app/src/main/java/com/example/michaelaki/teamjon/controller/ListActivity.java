@@ -1,12 +1,16 @@
 package com.example.michaelaki.teamjon.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -19,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by michaelaki on 10/10/17.
@@ -33,6 +38,13 @@ public class ListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        Button returnButton = (Button) findViewById(R.id.returnButton);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack();
+            }
+        });
 
         rats = new ArrayList<>();
 
@@ -41,8 +53,11 @@ public class ListActivity extends Activity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
+                int k = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (k == 50) {
+                        break;
+                    }
                     RatSighting rat = new RatSighting();
                     if (dataSnapshot.child("Borough").getValue() != null) {
                         rat.setBorough(dataSnapshot.child("Borough").getValue().toString());
@@ -72,12 +87,21 @@ public class ListActivity extends Activity {
                         rat.setKey(dataSnapshot.child("Unique Key").getValue().toString());
                     }
                     rats.add(rat);
+                    k++;
                 }
+
 
                 ArrayAdapter<RatSighting> ratAdapter = getAdapter();
 
                 ListView lists = (ListView) findViewById(R.id.ratList);
                 lists.setAdapter(ratAdapter);
+                lists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                                            long id) {
+                        goToRatInfo(position);
+                    }
+                });
             }
 
             @Override
@@ -93,6 +117,25 @@ public class ListActivity extends Activity {
 
     }
 
+    /**
+     * Starts the ratInfo activity with the rat at the given position in the list
+     * @param position the index in the list of the rat to load more information on
+     */
+    public void goToRatInfo(int position) {
+        Intent intent = new Intent(this, RatInfoActivity.class);
+        intent.putExtra("Rat", rats.get(position));
+        startActivity(intent);
+    }
+
+    public void goBack() {
+        Intent intent = new Intent(this, LaunchActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Creates and returns a new rat sighting adapter
+     * @return ArrayAdapter for all the rat sightings
+     */
     public ArrayAdapter getAdapter() {
         return new ArrayAdapter<RatSighting>(this, R.layout.list_item, rats);
     }

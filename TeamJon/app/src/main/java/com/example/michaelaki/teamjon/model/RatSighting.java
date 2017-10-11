@@ -1,10 +1,12 @@
 package com.example.michaelaki.teamjon.model;
 
+import java.io.Serializable;
+
 /**
  * Created by michaelaki on 10/10/17.
  */
 
-public class RatSighting {
+public class RatSighting implements Serializable{
     private String key;
     private String date;
     private String locationType;
@@ -19,6 +21,10 @@ public class RatSighting {
 
     }
 
+    /**
+     * Returns a string with the unique key and the date of each rat sighting
+     * @return string
+     */
     public String toString() {
         return "Key: " + key + "\nDate: " + date;
     }
