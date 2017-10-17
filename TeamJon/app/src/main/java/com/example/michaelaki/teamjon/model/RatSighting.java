@@ -29,38 +29,74 @@ public class RatSighting implements Serializable{
         return "Key: " + key + "\nDate: " + date;
     }
 
+    /**
+     * Getter for latitude
+     * @return Rat sighting's latitude
+     */
     public Double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Getter for longitude
+     * @return Rat sighting's longitude
+     */
     public Double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Getter for borough
+     * @return Rat sighting's borough
+     */
     public String getBorough() {
         return borough;
     }
 
+    /**
+     * Getter for city
+     * @return Rat sighting's city
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Getter for date
+     * @return Rat sighting's date
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Getter for address
+     * @return Rat sighting's address
+     */
     public String getIncidentAddress() {
         return incidentAddress;
     }
 
+    /**
+     * Getter for zip code
+     * @return Rat sighting's zip code
+     */
     public String getIncidentZip() {
         return incidentZip;
     }
 
+    /**
+     * Getter for unique key
+     * @return Rat sighting's key
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Getter for location type
+     * @return Rat sighting's location type
+     */
     public String getLocationType() {
         return locationType;
     }
