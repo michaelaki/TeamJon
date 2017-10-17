@@ -44,12 +44,16 @@ public class AddRatActivity extends Activity {
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
     }
-
+    /**
+     * Go back to the ListActivity screen
+     */
     public void goBack() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
-
+    /**
+     * Add a rat sighting instace to the map
+     */
     public void add() {
         /*Model model = Model.getInstance();
         if (admin) {

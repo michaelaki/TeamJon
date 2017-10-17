@@ -46,12 +46,16 @@ public class LaunchActivity extends Activity {
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
     }
-
+    /**
+     * Log out of user account
+     */
     public void logOut() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
-
+    /**
+     * Go to the Data Screen
+     */
     public void goToDataScreen() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
