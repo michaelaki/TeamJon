@@ -58,6 +58,9 @@ public class RatInfoActivity extends Activity {
         latLong.setText(rat.getLatitude() + ", " + rat.getLongitude());
     }
 
+    /**
+     * Go back to the ListActivity screen
+     */
     public void goBack() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);

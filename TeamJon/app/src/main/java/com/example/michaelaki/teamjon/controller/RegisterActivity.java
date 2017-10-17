@@ -64,11 +64,18 @@ public class RegisterActivity extends Activity {
         });
     }
 
+    /**
+     * Go to welcome screen
+     */
     public void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Check which user option is selected (admin or user)
+     * @param view Current view with the radio buttons
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -86,6 +93,9 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    /**
+     * Add new user to database
+     */
     public void register() {
         Model model = Model.getInstance();
         if (admin) {
