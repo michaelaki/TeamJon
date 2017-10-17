@@ -100,39 +100,66 @@ public class RatSighting implements Serializable{
     public String getLocationType() {
         return locationType;
     }
-
+    /**
+     * Setter for borough
+     * @param borough new name for User
+     */
     public void setBorough(String borough) {
         this.borough = borough;
     }
-
+    /**
+     * Setter for city
+     * @param city new name for User
+     */
     public void setCity(String city) {
         this.city = city;
     }
-
+    /**
+     * Setter for date
+     * @param date new name for User
+     */
     public void setDate(String date) {
         this.date = date;
     }
-
+    /**
+     * Setter for incident address
+     * @param incidentAddress new name for User
+     */
     public void setIncidentAddress(String incidentAddress) {
         this.incidentAddress = incidentAddress;
     }
-
+    /**
+     * Setter for incident zip code
+     * @param incidentZip new name for User
+     */
     public void setIncidentZip(String incidentZip) {
         this.incidentZip = incidentZip;
     }
-
+    /**
+     * Setter for key
+     * @param key new name for User
+     */
     public void setKey(String key) {
         this.key = key;
     }
-
+    /**
+     * Setter for latitiude
+     * @param latitude new name for User
+     */
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
-
+    /**
+     * Setter for location type
+     * @param locationType new name for User
+     */
     public void setLocationType(String locationType) {
         this.locationType = locationType;
     }
-
+    /**
+     * Setter for longitude
+     * @param longitude new name for User
+     */
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
