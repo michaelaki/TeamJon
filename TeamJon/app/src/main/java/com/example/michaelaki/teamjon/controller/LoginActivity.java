@@ -71,7 +71,9 @@ public class LoginActivity extends Activity {
             }
         });
     }
-
+    /**
+     * Go back to the Welcome screen
+     */
     public void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);

@@ -126,7 +126,9 @@ public class ListActivity extends Activity {
         intent.putExtra("Rat", rats.get(position));
         startActivity(intent);
     }
-
+    /**
+     * Go back to the LaunchActivity screen
+     */
     public void goBack() {
         Intent intent = new Intent(this, LaunchActivity.class);
         startActivity(intent);

@@ -73,7 +73,9 @@ public class LaunchActivity extends Activity {
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
     }
-
+    /**
+     * Go back to the screen to add a new sighting
+     */
     public void goToAddRat() {
 
 
@@ -81,12 +83,16 @@ public class LaunchActivity extends Activity {
         intent.putExtra("ID", id);
         startActivity(intent);
     }
-
+    /**
+     * Logs the user out and go back to the welcome screen
+     */
     public void logOut() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
-
+    /**
+     * Go to the data screen
+     */
     public void goToDataScreen() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
