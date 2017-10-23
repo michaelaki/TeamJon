@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -49,15 +50,12 @@ public class ListActivity extends Activity {
         rats = new ArrayList<>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference();
+        Query reference = database.getReference().limitToLast(50);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                int k = 0;
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (k == 50) {
-                        break;
-                    }
                     RatSighting rat = new RatSighting();
                     if (dataSnapshot.child("Borough").getValue() != null) {
                         rat.setBorough(dataSnapshot.child("Borough").getValue().toString());
@@ -87,7 +85,6 @@ public class ListActivity extends Activity {
                         rat.setKey(dataSnapshot.child("Unique Key").getValue().toString());
                     }
                     rats.add(rat);
-                    k++;
                 }
 
 
