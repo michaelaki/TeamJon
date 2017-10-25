@@ -62,6 +62,14 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button mapButton = (Button) findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMap();
+            }
+        });
+
         Button dataButton = (Button) findViewById(R.id.dataButton);
         dataButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,5 +109,11 @@ public class LaunchActivity extends Activity {
     public void setId(int num) {
 
         id = num;
+    }
+
+    public void goToMap() {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+
     }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">TeamJon</string>
 
     <!-- Strings related to login -->
+    <string name="google_maps_key">AIzaSyDc2nfO693DTl3jKPMTcWq6TxcWb5lHXwE</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

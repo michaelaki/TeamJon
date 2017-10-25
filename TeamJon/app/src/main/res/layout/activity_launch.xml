@@ -24,6 +24,11 @@
         android:layout_height="wrap_content"
         android:text="See Rat Data" />
     <Button
+        android:id="@+id/mapButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See Map" />
+    <Button
         android:id="@+id/addButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
