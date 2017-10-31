@@ -3,6 +3,7 @@ package com.example.michaelaki.teamjon.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,6 +24,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by quintinroper on 10/16/17.
@@ -118,6 +123,19 @@ public class AddRatActivity extends Activity {
             keyReference.child("Borough").setValue(rat.getBorough());
             keyReference.child("City").push();
             keyReference.child("City").setValue(rat.getCity());
+            keyReference.child("Compare Date").push();
+            String unformattedDate = rat.getDate();
+            
+
+            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+            Date formatDate = new Date();
+            try {
+                int index = unformattedDate.indexOf(' ');
+                formatDate = format.parse(unformattedDate.substring(0,index));
+            } catch (ParseException e) {
+                Log.e("Whoops", "There's a parse exception");
+            }
+            keyReference.child("Compare Date").setValue(formatDate.getTime());
             keyReference.child("Created Date").push();
             keyReference.child("Created Date").setValue(rat.getDate());
             keyReference.child("Incident Address").push();

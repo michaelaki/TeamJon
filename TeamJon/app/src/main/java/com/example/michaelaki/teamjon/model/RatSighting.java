@@ -1,6 +1,7 @@
 package com.example.michaelaki.teamjon.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by michaelaki on 10/10/17.
