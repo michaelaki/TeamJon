@@ -52,9 +52,9 @@ public class FilterActivity extends Activity {
             public void onClick(View v) {
 
                 DatePicker startDate = (DatePicker) findViewById(R.id.fromDatePicker);
-                String startDateString = startDate.getMonth() + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
+                String startDateString = startDate.getMonth() + 1 + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
                 DatePicker endDate = (DatePicker) findViewById(R.id.toDatePicker);
-                String endDateString = endDate.getMonth() + "/" + endDate.getDayOfMonth() + "/" + endDate.getYear();
+                String endDateString = endDate.getMonth() + 1 + "/" + endDate.getDayOfMonth() + "/" + endDate.getYear();
                 SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                 Date startDateFormatted = new Date();
                 Date endDateFormatted = new Date();

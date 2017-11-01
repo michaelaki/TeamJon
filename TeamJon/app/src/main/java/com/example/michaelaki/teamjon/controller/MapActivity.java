@@ -23,7 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -75,7 +78,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         // Add a marker in Sydney and move the camera
         LatLng newYork = new LatLng(40.7128, -74.0060);
-        mMap.addMarker(new MarkerOptions().position(newYork).title("Marker in Sydney"));
+        
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newYork, 15));
         addMarkers();
     }
@@ -100,10 +103,23 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                         }
                         if (dataSnapshot.child("Created Date").getValue() != null) {
                             rat.setDate(dataSnapshot.child("Created Date").getValue().toString());
+                            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                            Date startDateFormatted = new Date();
+                            try {
+                                int index = rat.getDate().indexOf(' ');
+
+                                startDateFormatted = format.parse(rat.getDate().substring(0,index));
+
+                                rat.setCompareDate( startDateFormatted.getTime());
+
+                            } catch (ParseException e) {
+                                Log.e("Whoops", "There's a parse exception");
+                            }
                         }
-                        if (dataSnapshot.child("Compare Date").getValue() != null) {
-                            rat.setCompareDate(Long.parseLong((dataSnapshot.child("Compare Date").getValue().toString())));
-                        }
+//                        if (dataSnapshot.child("Compare Date").getValue() != null) {
+//                            rat.setCompareDate(Long.parseLong((dataSnapshot.child("Compare Date").getValue().toString())));
+//                        }
+
                         if (dataSnapshot.child("Incident Address").getValue() != null) {
                             rat.setIncidentAddress(dataSnapshot.child("Incident Address").getValue().toString());
                         }
