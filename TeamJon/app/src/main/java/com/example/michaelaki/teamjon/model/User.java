@@ -3,11 +3,13 @@ package com.example.michaelaki.teamjon.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by quintinroper on 9/18/17.
  */
 
-public class User implements Parcelable {
+public class User implements Parcelable, Serializable {
     private String username;
     private String password;
     private String name;
@@ -52,6 +54,7 @@ public class User implements Parcelable {
      * 2-arg constructor that creates a User with an email and password
      * @param newUsername User's email
      * @param newPassword User's password
+     * @param newName User's name
      */
     public User(String newUsername, String newPassword, String newName) {
         username = newUsername;
