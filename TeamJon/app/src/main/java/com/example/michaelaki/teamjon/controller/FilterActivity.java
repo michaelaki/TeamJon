@@ -27,11 +27,14 @@ public class FilterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_rat);
+        setContentView(R.layout.activity_filter_menu);
 
         Intent intent = getIntent();
         filter = (Filter) intent.getSerializableExtra("Filter");
         startFilter = (Filter) intent.getSerializableExtra("Filter");
+        if (filter == null) {
+            filter = new Filter();
+        }
 
         Button cancel = (Button) findViewById(R.id.filterCancelButton);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +62,8 @@ public class FilterActivity extends Activity {
 
                     startDateFormatted = format.parse(startDateString);
                     endDateFormatted = format.parse(endDateString);
-                    filter.setStartDate((int) startDateFormatted.getTime());
-                    filter.setEndDate((int) endDateFormatted.getTime());
+                    filter.setStartDate( startDateFormatted.getTime());
+                    filter.setEndDate( endDateFormatted.getTime());
 
                 } catch (ParseException e) {
                     Log.e("Whoops", "There's a parse exception");

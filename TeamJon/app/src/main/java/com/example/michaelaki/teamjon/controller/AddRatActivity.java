@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.michaelaki.teamjon.R;
 import com.example.michaelaki.teamjon.model.Admin;
-import com.example.michaelaki.teamjon.model.Model;
 import com.example.michaelaki.teamjon.model.RatSighting;
 import com.example.michaelaki.teamjon.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -125,7 +124,7 @@ public class AddRatActivity extends Activity {
             keyReference.child("City").setValue(rat.getCity());
             keyReference.child("Compare Date").push();
             String unformattedDate = rat.getDate();
-            
+
 
             SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
             Date formatDate = new Date();

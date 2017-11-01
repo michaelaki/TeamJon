@@ -39,7 +39,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        filter = new Filter();
+        filter = null;
         Intent intent = getIntent();
         if (intent.getSerializableExtra("Filter") != null) {
             filter = (Filter) intent.getSerializableExtra("Filter");
@@ -84,8 +84,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         if (filter != null) {
 
-            Query markerQuery = firebaseDatabase.getReference().startAt(Integer.toString(filter.getStartDate()), "Compare Date")
-                    .endAt(Integer.toString(filter.getEndDate()), "Compare Date");
+            Query markerQuery = firebaseDatabase.getReference().limitToLast(3000);
             markerQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -101,6 +100,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                         }
                         if (dataSnapshot.child("Created Date").getValue() != null) {
                             rat.setDate(dataSnapshot.child("Created Date").getValue().toString());
+                        }
+                        if (dataSnapshot.child("Compare Date").getValue() != null) {
+                            rat.setCompareDate(Long.parseLong((dataSnapshot.child("Compare Date").getValue().toString())));
                         }
                         if (dataSnapshot.child("Incident Address").getValue() != null) {
                             rat.setIncidentAddress(dataSnapshot.child("Incident Address").getValue().toString());
@@ -123,9 +125,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                         rats.add(rat);
 
                     }
-                    for (int k = 0; k < rats.size(); k++) {
-                        LatLng latLng = new LatLng(rats.get(k).getLatitude(), rats.get(k).getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(rats.get(k).getKey()).snippet(rats.get(k).getDate()));
+                    for (int k = 0; k < rats.size() - 2; k++) {
+                        if (rats.get(k).getCompareDate() > filter.getStartDate() && rats.get(k).getCompareDate() < filter.getEndDate()) {
+                            LatLng latLng = new LatLng(rats.get(k).getLatitude(), rats.get(k).getLongitude());
+                            mMap.addMarker(new MarkerOptions().position(latLng).title(rats.get(k).getKey()).snippet(rats.get(k).getDate()));
+                        }
                     }
                 }
                 @Override

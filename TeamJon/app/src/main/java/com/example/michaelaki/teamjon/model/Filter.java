@@ -7,27 +7,27 @@ import java.io.Serializable;
  */
 
 public class Filter implements Serializable {
-    private int startDate;
-    private int endDate;
+    private long startDate;
+    private long endDate;
 
     public Filter() {
         startDate = 0;
         endDate = 0;
     }
 
-    public int getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
-    public int getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public void setEndDate(int endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 
-    public void setStartDate(int startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 }

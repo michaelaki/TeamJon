@@ -17,9 +17,18 @@ public class RatSighting implements Serializable{
     private String borough;
     private Double latitude;
     private Double longitude;
+    private long compareDate;
 
     public RatSighting() {
 
+    }
+
+    public long getCompareDate() {
+        return compareDate;
+    }
+
+    public void setCompareDate(long compareDate) {
+        this.compareDate = compareDate;
     }
 
     /**
