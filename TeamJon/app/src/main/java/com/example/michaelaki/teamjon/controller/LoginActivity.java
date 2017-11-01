@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,10 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.michaelaki.teamjon.R;
-import com.example.michaelaki.teamjon.model.Model;
-import com.example.michaelaki.teamjon.model.User;
-
-import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A login screen that offers login via email/password.
@@ -35,6 +37,9 @@ public class LoginActivity extends Activity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private String foundPassword;
+    private String foundName;
+    private boolean found;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,23 @@ public class LoginActivity extends Activity {
     }
 
     /**
+     * Advance to the Launch screen
+     */
+    private void login() {
+        Intent intent = new Intent(this, LaunchActivity.class);
+        intent.putExtra("Username", mEmailView.getText().toString());
+        intent.putExtra("Name", foundName);
+        startActivity(intent);
+    }
+
+    /**
+     * Print a message to the screen telling the user that they input invalid information
+     */
+    private void makeToast() {
+        Toast.makeText(this, "Invalid Username and/or Password", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
@@ -90,30 +112,33 @@ public class LoginActivity extends Activity {
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        Model model = Model.getInstance();
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean found = false;
-
-        int x = 0;
-        while (x < model.getUsers().size() && !found) {
-            if (model.getUsers().get(x).getUsername().equals(email)
-                    && model.getUsers().get(x).getPassword().equals(password)) {
-                Intent intent = new Intent(this, LaunchActivity.class);
-                intent.putExtra("Username", email);
-                intent.putExtra("Name", model.getUsers().get(x).getName());
-                startActivity(intent);
-                found = true;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        Query reference = database.getReference().child("users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(mEmailView.getText().toString())) {
+                        foundPassword = dataSnapshot.child("Password").getValue().toString();
+                        foundName = dataSnapshot.child("Name").getValue().toString();
+                        found = true;
+                        if (foundPassword.equals(mPasswordView.getText().toString())) {
+                            login();
+                        } else {
+                            found = false;
+                        }
+                    }
+                }
+                if (!found) {
+                    makeToast();
+                }
             }
-            x++;
-        }
-        if (!found) {
-            Toast.makeText(this, "Invalid Username and Password", Toast.LENGTH_SHORT).show();
-        }
-    }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Failed to read value", databaseError.toString(), databaseError.toException());
+            }
+        });
+    }
 }
 
