@@ -37,6 +37,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     GoogleMap mMap;
     private Filter filter;
 
+    /**
+     * Populates page with all necessary information for viewing and using the map
+     * @param savedInstanceState the saved instance passed from the previous page
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
     }
 
+    /**
+     * Displays Google Map when ready
+     * @param googleMap map to display
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -83,6 +91,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         addMarkers();
     }
 
+    /**
+     * Add pins for all rat sightings to be displayed
+     */
     public void addMarkers() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         if (filter != null) {

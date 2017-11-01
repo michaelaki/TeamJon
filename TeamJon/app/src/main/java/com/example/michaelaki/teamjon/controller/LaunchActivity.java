@@ -106,11 +106,18 @@ public class LaunchActivity extends Activity {
         startActivity(intent);
     }
 
+    /**
+     * Set the id for the next rat to be added the the database
+     * @param num
+     */
     public void setId(int num) {
 
         id = num;
     }
 
+    /**
+     * Go to the map screen
+     */
     public void goToMap() {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
