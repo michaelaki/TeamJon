@@ -23,10 +23,18 @@ public class RatSighting implements Serializable{
 
     }
 
+    /**
+     * Getter for compare date
+     * @return Rat sighting's compare date
+     */
     public long getCompareDate() {
         return compareDate;
     }
 
+    /**
+     * Setter for compare date used when displaying RatSigthing on map and graph
+     * @param compareDate new compareDate for User
+     */
     public void setCompareDate(long compareDate) {
         this.compareDate = compareDate;
     }
