@@ -106,12 +106,6 @@ public class ListActivity extends Activity {
                 Log.e("Failed to read value", databaseError.toString(), databaseError.toException());
             }
         });
-
-
-
-
-
-
     }
 
     /**

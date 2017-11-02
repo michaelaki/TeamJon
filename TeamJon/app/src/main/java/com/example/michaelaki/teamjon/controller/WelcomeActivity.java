@@ -80,6 +80,9 @@ public class WelcomeActivity extends Activity {
         });
     }
 
+    /**
+     * Convert the date from each saved rat sighting to a SimpleDateFormat for filtering
+     */
     public void changeDate() {
         Set listNums = list.keySet();
         System.out.println(list.size());
