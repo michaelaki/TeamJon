@@ -33,9 +33,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Rat Sighting" />
+
+    <Button
+        android:id="@+id/graphButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See Graphs" />
+
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log Out" />
+
 </LinearLayout>

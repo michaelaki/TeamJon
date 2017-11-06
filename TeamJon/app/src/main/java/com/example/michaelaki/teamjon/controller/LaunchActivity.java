@@ -78,6 +78,14 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button graphButton = (Button) findViewById(R.id.graphButton);
+        graphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToGraph();
+            }
+        });
+
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
     }
@@ -122,5 +130,13 @@ public class LaunchActivity extends Activity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
 
+    }
+
+    /**
+     * Go to graph screen
+     */
+    public void goToGraph() {
+        Intent intent = new Intent(this, GraphActivity.class);
+        startActivity(intent);
     }
 }

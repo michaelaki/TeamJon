@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/explanationText"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Select a date range to filter"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/fromDateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From" />
+
+    <DatePicker
+        android:id="@+id/fromDatePicker"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:endYear="2017" />
+
+    <TextView
+        android:id="@+id/toDateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To" />
+
+    <DatePicker
+        android:id="@+id/toDatePicker"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:endYear="2017" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <Button
+        android:id="@+id/graphCancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/graphConfirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm" />
+
+</LinearLayout>

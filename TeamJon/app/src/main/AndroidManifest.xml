@@ -3,7 +3,6 @@
     package="com.example.michaelaki.teamjon">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -75,7 +73,15 @@
                 android:value=".controller.LoginActivity" />
         </activity>
         <activity android:name=".controller.RegisterActivity"
-            android:parentActivityName=".controller.WelcomeActivity" >
+            android:parentActivityName=".controller.WelcomeActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".controller.GraphActivity"
+            android:parentActivityName=".controller.LaunchActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
