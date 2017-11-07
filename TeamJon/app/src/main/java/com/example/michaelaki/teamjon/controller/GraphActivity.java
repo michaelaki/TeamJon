@@ -71,7 +71,7 @@ public class GraphActivity extends AppCompatActivity {
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
                 //analyze data points -- to get data from earlier months increase the limit
-                Query query = firebaseDatabase.getReference().limitToLast(3000);
+                Query query = firebaseDatabase.getReference().limitToLast(50000);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                       @Override
                       public void onDataChange(DataSnapshot snapshot) {
@@ -132,6 +132,9 @@ public class GraphActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Parse data for the graph and display the data
+     */
     public void showGraph() {
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
