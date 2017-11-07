@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Collections;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -49,6 +50,7 @@ public class GraphActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                map = new HashMap<Integer, Integer>();
                 DatePicker startDate = (DatePicker) findViewById(R.id.fromDatePicker);
                 String startDateString = startDate.getMonth() + 1 + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
                 DatePicker endDate = (DatePicker) findViewById(R.id.toDatePicker);
@@ -66,18 +68,14 @@ public class GraphActivity extends AppCompatActivity {
                 }
 
                 //display graph
-                LineChart lineChart = (LineChart) findViewById(R.id.chart);
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-                //analyze data points
-                Query markerQuery = firebaseDatabase.getReference().limitToLast(3000);
-                //it's not going thru the database data correctly?
-                System.out.println("something here");
-                markerQuery.addValueEventListener(new ValueEventListener() {
+                //analyze data points -- to get data from earlier months increase the limit
+                Query query = firebaseDatabase.getReference().limitToLast(3000);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                       @Override
                       public void onDataChange(DataSnapshot snapshot) {
                           List<RatSighting> rats = new ArrayList();
-                          System.out.println("reading data hopefully");
 
                           for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                               RatSighting rat = new RatSighting();
@@ -95,8 +93,6 @@ public class GraphActivity extends AppCompatActivity {
                               }
                               rats.add(rat);
                           }
-                          System.out.println("Done reading data");
-                          System.out.println(rats);
                           //get number of sightings per month/year
                           for (int k = 0; k < rats.size() - 2; k++) {
                               if (rats.get(k).getCompareDate() > filter.getStartDate() && rats.get(k).getCompareDate() < filter.getEndDate()) {
@@ -109,12 +105,13 @@ public class GraphActivity extends AppCompatActivity {
                                   //x-coord is MMyyyy
                                   int x = (Integer.parseInt(month) * 10000) + Integer.parseInt(year);
                                   if (!map.containsKey(x)) {
-                                      map.put(x, 0);
+                                      map.put(x, 1);
                                   } else {
                                       map.put(x, map.get(x) + 1);
                                   }
                               }
                           }
+                          showGraph();
                       }
 
                       @Override
@@ -122,20 +119,6 @@ public class GraphActivity extends AppCompatActivity {
                           Log.e("Failed to read value", databaseError.toString(), databaseError.toException());
                       }
                   });
-
-                //convert map to a list of entries
-                List<Entry> entries = new ArrayList<Entry>();
-                for (int key : map.keySet()) {
-                    entries.add(new Entry(key, map.get(key)));
-                }
-                //do you have to sort entries?
-                LineDataSet dataset = new LineDataSet(entries, "# of Sightings");
-                Log.d("APP", "Made dataset with : " + entries.size());
-                LineData data = new LineData(dataset);
-                dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-                lineChart.setData(data);
-                lineChart.animateY(5000);
-                lineChart.getDescription().setText("Number of Rat Sightings per Month/Year");
             }
         });
     }
@@ -147,5 +130,28 @@ public class GraphActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LaunchActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+    }
+
+    public void showGraph() {
+        LineChart lineChart = (LineChart) findViewById(R.id.chart);
+
+        //convert map to a list of entries
+        List<Entry> entries = new ArrayList<Entry>();
+        List<Integer> keys = new ArrayList<Integer>();
+        for (int key : map.keySet()) {
+            keys.add(key);
+        }
+        Collections.sort(keys);
+        for (int key : keys) {
+            System.out.println(key + " " + map.get(key));
+            entries.add(new Entry(key, map.get(key)));
+        }
+        //sort entries to make keys in order
+        LineDataSet dataset = new LineDataSet(entries, "# of Sightings");
+        Log.d("APP", "Made dataset with : " + entries.size());
+        LineData data = new LineData(dataset);
+        lineChart.setData(data);
+        lineChart.animateY(5000);
+        lineChart.getDescription().setText("Number of Rat Sightings per Month/Year");
     }
 }
