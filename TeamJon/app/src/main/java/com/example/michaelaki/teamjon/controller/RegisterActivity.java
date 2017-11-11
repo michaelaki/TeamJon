@@ -100,14 +100,21 @@ public class RegisterActivity extends Activity {
     }
 
     /**
+     * Get which type of user the user is (admin or normal user)
+     */
+    public User getUserType(boolean isAdmin) {
+        if (isAdmin) {
+            return new Admin(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
+        } else {
+            return new User(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
+        }
+    }
+
+    /**
      * Add new user to database
      */
     public void register() {
-        if (admin) {
-            user = new Admin(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
-        } else {
-            user = new User(emailField.getText().toString(), passwordField.getText().toString(), nameField.getText().toString());
-        }
+        user = getUserType(admin);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference().child("users");
         reference.child(user.getUsername()).push();
@@ -127,6 +134,9 @@ public class RegisterActivity extends Activity {
                 Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Checks the database to confirm if the user already exists
+     */
     private void validateUsername() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         Query reference = database.getReference().child("users");
