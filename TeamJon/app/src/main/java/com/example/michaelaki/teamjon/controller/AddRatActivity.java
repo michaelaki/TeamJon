@@ -73,7 +73,7 @@ public class AddRatActivity extends Activity {
     }
     /**
      * Attempts to create a new rat sighting.
-     * If there are form errors (invlaid #s for lat/long, invalid date/location), the
+     * If there are form errors (invalid #s for lat/long, invalid date/location), the
      * errors are presented and no activity is made
      */
     public void add() {

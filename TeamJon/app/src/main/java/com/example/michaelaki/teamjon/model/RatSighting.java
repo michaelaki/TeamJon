@@ -32,7 +32,7 @@ public class RatSighting implements Serializable{
     }
 
     /**
-     * Setter for compare date used when displaying RatSigthing on map and graph
+     * Setter for compare date used when displaying RatSighting on map and graph
      * @param compareDate new compareDate for User
      */
     public void setCompareDate(long compareDate) {
@@ -161,7 +161,7 @@ public class RatSighting implements Serializable{
         this.key = key;
     }
     /**
-     * Setter for latitiude
+     * Setter for latitude
      * @param latitude new name for User
      */
     public void setLatitude(Double latitude) {
