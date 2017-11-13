@@ -25,7 +25,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by michaelaki on 9/13/17.
+ * File made by michaelaki on 9/13/17.
  */
 
 public class RegisterActivity extends Activity {
