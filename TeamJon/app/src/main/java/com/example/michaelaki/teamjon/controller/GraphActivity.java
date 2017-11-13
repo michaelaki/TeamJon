@@ -102,7 +102,6 @@ public class GraphActivity extends AppCompatActivity {
                                   SimpleDateFormat formatYear = new SimpleDateFormat("yyyy");
                                   String month = formatMonth.format(new Date(compareDate));
                                   String year = formatYear.format(new Date(compareDate));
-                                  //x-coord is MMyyyy
                                   int x = (Integer.parseInt(month) * 10000) + Integer.parseInt(year);
                                   if (!map.containsKey(x)) {
                                       map.put(x, 1);
