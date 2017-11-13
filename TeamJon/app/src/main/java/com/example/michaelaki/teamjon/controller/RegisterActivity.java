@@ -40,7 +40,7 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        emailField = (EditText) findViewById(R.id.email_text);
+        emailField = (EditText) findViewById(R.id.username_text);
         passwordField = (EditText) findViewById(R.id.password_text);
         nameField = (EditText) findViewById(R.id.name_text);
         /*passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -73,7 +73,7 @@ public class RegisterActivity extends Activity {
     /**
      * Go to welcome screen
      */
-    public void returnToWelcomeScreen() {
+    private void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
@@ -113,7 +113,7 @@ public class RegisterActivity extends Activity {
     /**
      * Add new user to database
      */
-    public void register() {
+    private void register() {
         user = getUserType(admin);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference().child("users");
@@ -126,41 +126,41 @@ public class RegisterActivity extends Activity {
         returnToWelcomeScreen();
     }
 
-    /**
-     * Print a message to the screen telling the user that they input invalid information
-     */
-    private void makeToast() {
-        Toast.makeText(this, "Username is already in use. Please try a different Username",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Checks the database to confirm if the user already exists
-     */
-    private void validateUsername() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        Query reference = database.getReference().child("users");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("#################################");
-                boolean found = false;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals(emailField.getText().toString())) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    register();
-                } else {
-                    makeToast();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("Failed to read value", databaseError.toString(), databaseError.toException());
-            }
-        });
-    }
+//    /**
+//     * Print a message to the screen telling the user that they input invalid information
+//     */
+//    private void makeToast() {
+//        Toast.makeText(this, "Username is already in use. Please try a different Username",
+//                Toast.LENGTH_SHORT).show();
+//    }
+//
+//    /**
+//     * Checks the database to confirm if the user already exists
+//     */
+//    private void validateUsername() {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        Query reference = database.getReference().child("users");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                System.out.println("#################################");
+//                boolean found = false;
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    if (dataSnapshot.getKey().equals(emailField.getText().toString())) {
+//                        found = true;
+//                    }
+//                }
+//                if (!found) {
+//                    register();
+//                } else {
+//                    makeToast();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.e("Failed to read value", databaseError.toString(), databaseError.toException());
+//            }
+//        });
+//    }
 }

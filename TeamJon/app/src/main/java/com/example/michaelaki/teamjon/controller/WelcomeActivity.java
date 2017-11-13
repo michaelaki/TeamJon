@@ -28,7 +28,7 @@ import java.util.Set;
  */
 
 public class WelcomeActivity extends Activity {
-    Map<Integer, String> list;
+//    private final Map<Integer, String> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,39 +80,39 @@ public class WelcomeActivity extends Activity {
         });
     }
 
-    /**
-     * Convert the date from each saved rat sighting to a SimpleDateFormat for filtering
-     */
-    public void changeDate() {
-        Set listNums = list.keySet();
-        System.out.println(list.size());
-        for (Object num: listNums) {
-            int number = Integer.parseInt(num.toString());
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference child = reference.child(Integer.toString(number));
-            child.child("Compare Date").push();
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-            Date date = new Date();
-            try {
-                int index = list.get(number).indexOf(' ');
-                date = format.parse(list.get(number).substring(0,index));
-            } catch (ParseException e) {
-                Log.e("Whoops", "There's a parse exception");
-            }
-            if (date != new Date()) {
-
-                child.child("Compare Date").setValue(date.getTime());
-            }
-
-
-        }
-        System.out.println("WOW");
-    }
+//    /**
+//     * Convert the date from each saved rat sighting to a SimpleDateFormat for filtering
+//     */
+//    public void changeDate() {
+//        Set listNums = list.keySet();
+//        System.out.println(list.size());
+//        for (Object num: listNums) {
+//            int number = Integer.parseInt(num.toString());
+//            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//            DatabaseReference child = reference.child(Integer.toString(number));
+//            child.child("Compare Date").push();
+//            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+//            Date date = new Date();
+//            try {
+//                int index = list.get(number).indexOf(' ');
+//                date = format.parse(list.get(number).substring(0,index));
+//            } catch (ParseException e) {
+//                Log.e("Whoops", "There's a parse exception");
+//            }
+//            if (date != new Date()) {
+//
+//                child.child("Compare Date").setValue(date.getTime());
+//            }
+//
+//
+//        }
+//        System.out.println("WOW");
+//    }
 
     /**
      * Go to the login screen
      */
-    public void goToLoginScreen() {
+    private void goToLoginScreen() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -120,7 +120,7 @@ public class WelcomeActivity extends Activity {
     /**
      * Go to register new user screen
      */
-    public void goToRegisterScreen() {
+    private void goToRegisterScreen() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

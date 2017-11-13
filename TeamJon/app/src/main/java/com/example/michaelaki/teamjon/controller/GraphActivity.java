@@ -30,7 +30,7 @@ import java.util.Collections;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private Filter filter = new Filter();
+    private final Filter filter = new Filter();
     private HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();   //key, value is date, number
 
     @Override
@@ -80,7 +80,7 @@ public class GraphActivity extends AppCompatActivity {
                           for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                               RatSighting rat = new RatSighting();
                               if (dataSnapshot.child("Created Date").getValue() != null) {
-                                  rat.setDate(dataSnapshot.child("Created Date").getValue().toString());
+                                  rat.setDate((String) dataSnapshot.child("Created Date").getValue());
                                   SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                                   Date startDateFormatted = new Date();
                                   try {
@@ -125,7 +125,7 @@ public class GraphActivity extends AppCompatActivity {
     /**
      * Go back to the LaunchActivity screen
      */
-    public void goBack() {
+    private void goBack() {
         Intent intent = new Intent(this, LaunchActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
@@ -134,7 +134,7 @@ public class GraphActivity extends AppCompatActivity {
     /**
      * Parse data for the graph and display the data
      */
-    public void showGraph() {
+    private void showGraph() {
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
         //convert map to a list of entries

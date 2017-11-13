@@ -21,34 +21,16 @@ public class User implements Parcelable, Serializable {
     public String getUsername() { return username; }
 
     /**
-     * Setter for username
-     * @param newUsername new username for User
-     */
-    public void setUsername(String newUsername) { username = newUsername; }
-
-    /**
      * Getter for password
      * @return User's password
      */
     public String getPassword() { return password; }
 
     /**
-     * Setter for password
-     * @param newPassword new password for User
-     */
-    public void setPassword(String newPassword) { password = newPassword; }
-
-    /**
      * Getter for name
      * @return User's name
      */
     public String getName() { return name; }
-
-    /**
-     * Setter for name
-     * @param newName new name for User
-     */
-    public void setName(String newName) { name = newName; }
 
     /**
      * 2-arg constructor that creates a User with an email and password
