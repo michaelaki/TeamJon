@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by michaelaki on 9/15/17.
+ * File made by michaelaki on 9/15/17.
  */
 
 public class LaunchActivity extends Activity {

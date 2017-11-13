@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Created by JonathanChen on 11/11/17.
+ * File made by JonathanChen on 11/11/17.
  */
 @RunWith(AndroidJUnit4.class)
 public class UserTypeTest extends ActivityTestRule {

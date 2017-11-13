@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by michaelaki on 10/31/17.
+ * File made by michaelaki on 10/31/17.
  */
 
 public class FilterActivity extends Activity {

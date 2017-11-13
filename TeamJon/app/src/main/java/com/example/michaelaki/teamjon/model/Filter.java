@@ -3,7 +3,7 @@ package com.example.michaelaki.teamjon.model;
 import java.io.Serializable;
 
 /**
- * Created by michaelaki on 10/31/17.
+ * File made by michaelaki on 10/31/17.
  */
 
 public class Filter implements Serializable {

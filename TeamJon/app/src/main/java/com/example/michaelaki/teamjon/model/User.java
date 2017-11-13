@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 /**
- * Created by quintinroper on 9/18/17.
+ * File made by quintinroper on 9/18/17.
  */
 
 public class User implements Parcelable, Serializable {

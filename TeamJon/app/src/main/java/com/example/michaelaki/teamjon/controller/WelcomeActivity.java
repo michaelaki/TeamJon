@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by michaelaki on 9/14/17.
+ * File made by michaelaki on 9/14/17.
  */
 
 public class WelcomeActivity extends Activity {

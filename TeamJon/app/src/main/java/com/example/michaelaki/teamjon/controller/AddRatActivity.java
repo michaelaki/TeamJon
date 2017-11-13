@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by quintinroper on 10/16/17.
+ * File made by quintinroper on 10/16/17.
  */
 
 public class AddRatActivity extends Activity {

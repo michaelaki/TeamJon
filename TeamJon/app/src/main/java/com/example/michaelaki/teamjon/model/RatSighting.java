@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by michaelaki on 10/10/17.
+ * File made by michaelaki on 10/10/17.
  */
 
 public class RatSighting implements Serializable{

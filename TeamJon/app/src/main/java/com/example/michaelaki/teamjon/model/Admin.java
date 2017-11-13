@@ -1,7 +1,7 @@
 package com.example.michaelaki.teamjon.model;
 
 /**
- * Created by quintinroper on 9/24/17.
+ * File made by quintinroper on 9/24/17.
  */
 
 public class Admin extends User {
