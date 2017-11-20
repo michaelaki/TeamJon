@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.michaelaki.teamjon.R;
 import com.example.michaelaki.teamjon.model.Admin;
@@ -107,15 +108,19 @@ public class RegisterActivity extends Activity {
     private void register() {
         User user;
         user = getUserType(admin);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("users");
-        reference.child(user.getUsername()).push();
-        reference.child(user.getUsername()).child("Name").push();
-        reference.child(user.getUsername()).child("Name").setValue(user.getName());
-        reference.child(user.getUsername()).child("Password").push();
-        reference.child(user.getUsername()).child("Password").setValue(user.getPassword());
+        if (user.validatePassword(user.getPassword())) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference reference = database.getReference().child("users");
+            reference.child(user.getUsername()).push();
+            reference.child(user.getUsername()).child("Name").push();
+            reference.child(user.getUsername()).child("Name").setValue(user.getName());
+            reference.child(user.getUsername()).child("Password").push();
+            reference.child(user.getUsername()).child("Password").setValue(user.getPassword());
 
-        returnToWelcomeScreen();
+            returnToWelcomeScreen();
+        } else {
+            Toast.makeText(this, "Password must be greater than 6 characters", Toast.LENGTH_SHORT).show();
+        }
     }
 
 //    /**
