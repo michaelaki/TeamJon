@@ -67,13 +67,23 @@ public class ListActivity extends Activity {
                         rat.setIncidentZip((String) dataSnapshot.child("Incident Zip").getValue());
                     }
                     if (dataSnapshot.child("Latitude").getValue() != null) {
-                        rat.setLatitude(Double.parseDouble((String) dataSnapshot.child("Latitude").getValue()));
+                        try {
+                            rat.setLatitude(Double.parseDouble((String) dataSnapshot.child("Latitude").getValue()));
+                        } catch (ClassCastException e) {
+                            //noinspection ConstantConditions
+                            rat.setLatitude(Double.parseDouble(Long.toString((Long) dataSnapshot.child("Latitude").getValue())));
+                        }
                     }
                     if (dataSnapshot.child("Location Type").getValue() != null) {
                         rat.setLocationType((String) dataSnapshot.child("Location Type").getValue());
                     }
                     if (dataSnapshot.child("Longitude").getValue() != null) {
-                        rat.setLongitude(Double.parseDouble((String) dataSnapshot.child("Longitude").getValue()));
+                        try {
+                            rat.setLongitude(Double.parseDouble((String) dataSnapshot.child("Longitude").getValue()));
+                        } catch (ClassCastException e) {
+                            //noinspection ConstantConditions
+                            rat.setLongitude(Double.parseDouble(Long.toString((Long) dataSnapshot.child("Longitude").getValue())));
+                        }
                     }
                     if (dataSnapshot.child("Unique Key").getValue() != null) {
                         rat.setKey((String) dataSnapshot.child("Unique Key").getValue());
