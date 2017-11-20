@@ -27,17 +27,23 @@ public class User implements Parcelable, Serializable {
     public String getPassword() { return password; }
 
     /**
-<<<<<<< HEAD
      * Setter for password
      * @param newPassword new password for User
      */
     public void setPassword(String newPassword) { password = newPassword; }
 
-    public boolean validatePassword(String newPassword) { return (newPassword.length() > 6); }
+    /**
+     * Validates that password greater than 6 characters
+     * @param newPassword new password for User
+     */
+    protected boolean validatePassword(String newPassword) {
+        if (newPassword == null) {
+            return false;
+        }
+        return (newPassword.length() > 6);
+    }
 
     /**
-=======
->>>>>>> d7f8fc43806b9dd2018f69628ca477bc16956977
      * Getter for name
      * @return User's name
      */
