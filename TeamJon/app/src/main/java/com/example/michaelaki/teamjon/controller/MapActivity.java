@@ -34,7 +34,7 @@ import java.util.List;
  */
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
-    GoogleMap mMap;
+    private GoogleMap mMap;
     private Filter filter;
 
     /**
@@ -94,7 +94,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     /**
      * Add pins for all rat sightings to be displayed
      */
-    public void addMarkers() {
+    private void addMarkers() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         if (filter != null) {
 
@@ -107,13 +107,13 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         RatSighting rat = new RatSighting();
                         if (dataSnapshot.child("Borough").getValue() != null) {
-                            rat.setBorough(dataSnapshot.child("Borough").getValue().toString());
+                            rat.setBorough((String) dataSnapshot.child("Borough").getValue());
                         }
                         if (dataSnapshot.child("City").getValue() != null) {
-                            rat.setCity(dataSnapshot.child("City").getValue().toString());
+                            rat.setCity((String) dataSnapshot.child("City").getValue());
                         }
                         if (dataSnapshot.child("Created Date").getValue() != null) {
-                            rat.setDate(dataSnapshot.child("Created Date").getValue().toString());
+                            rat.setDate((String) dataSnapshot.child("Created Date").getValue());
                             SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                             Date startDateFormatted = new Date();
                             try {
@@ -132,22 +132,22 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 //                        }
 
                         if (dataSnapshot.child("Incident Address").getValue() != null) {
-                            rat.setIncidentAddress(dataSnapshot.child("Incident Address").getValue().toString());
+                            rat.setIncidentAddress((String) dataSnapshot.child("Incident Address").getValue());
                         }
                         if (dataSnapshot.child("Incident Zip").getValue() != null) {
-                            rat.setIncidentZip(dataSnapshot.child("Incident Zip").getValue().toString());
+                            rat.setIncidentZip((String) dataSnapshot.child("Incident Zip").getValue());
                         }
                         if (dataSnapshot.child("Latitude").getValue() != null) {
-                            rat.setLatitude(Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString()));
+                            rat.setLatitude(Double.parseDouble((String) dataSnapshot.child("Latitude").getValue()));
                         }
                         if (dataSnapshot.child("Location Type").getValue() != null) {
-                            rat.setLocationType(dataSnapshot.child("Location Type").getValue().toString());
+                            rat.setLocationType((String) dataSnapshot.child("Location Type").getValue());
                         }
                         if (dataSnapshot.child("Longitude").getValue() != null) {
-                            rat.setLongitude(Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString()));
+                            rat.setLongitude(Double.parseDouble((String) dataSnapshot.child("Longitude").getValue()));
                         }
                         if (dataSnapshot.child("Unique Key").getValue() != null) {
-                            rat.setKey(dataSnapshot.child("Unique Key").getValue().toString());
+                            rat.setKey((String) dataSnapshot.child("Unique Key").getValue());
                         }
                         rats.add(rat);
 
@@ -174,31 +174,31 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         RatSighting rat = new RatSighting();
                         if (dataSnapshot.child("Borough").getValue() != null) {
-                            rat.setBorough(dataSnapshot.child("Borough").getValue().toString());
+                            rat.setBorough((String) dataSnapshot.child("Borough").getValue());
                         }
                         if (dataSnapshot.child("City").getValue() != null) {
-                            rat.setCity(dataSnapshot.child("City").getValue().toString());
+                            rat.setCity((String) dataSnapshot.child("City").getValue());
                         }
                         if (dataSnapshot.child("Created Date").getValue() != null) {
-                            rat.setDate(dataSnapshot.child("Created Date").getValue().toString());
+                            rat.setDate((String) dataSnapshot.child("Created Date").getValue());
                         }
                         if (dataSnapshot.child("Incident Address").getValue() != null) {
-                            rat.setIncidentAddress(dataSnapshot.child("Incident Address").getValue().toString());
+                            rat.setIncidentAddress((String) dataSnapshot.child("Incident Address").getValue());
                         }
                         if (dataSnapshot.child("Incident Zip").getValue() != null) {
-                            rat.setIncidentZip(dataSnapshot.child("Incident Zip").getValue().toString());
+                            rat.setIncidentZip((String) dataSnapshot.child("Incident Zip").getValue());
                         }
                         if (dataSnapshot.child("Latitude").getValue() != null) {
-                            rat.setLatitude(Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString()));
+                            rat.setLatitude(Double.parseDouble((String) dataSnapshot.child("Latitude").getValue()));
                         }
                         if (dataSnapshot.child("Location Type").getValue() != null) {
-                            rat.setLocationType(dataSnapshot.child("Location Type").getValue().toString());
+                            rat.setLocationType((String) dataSnapshot.child("Location Type").getValue());
                         }
                         if (dataSnapshot.child("Longitude").getValue() != null) {
-                            rat.setLongitude(Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString()));
+                            rat.setLongitude(Double.parseDouble((String) dataSnapshot.child("Longitude").getValue()));
                         }
                         if (dataSnapshot.child("Unique Key").getValue() != null) {
-                            rat.setKey(dataSnapshot.child("Unique Key").getValue().toString());
+                            rat.setKey((String) dataSnapshot.child("Unique Key").getValue());
                         }
                         rats.add(rat);
 

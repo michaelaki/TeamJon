@@ -21,18 +21,13 @@ public class User implements Parcelable, Serializable {
     public String getUsername() { return username; }
 
     /**
-     * Setter for username
-     * @param newUsername new username for User
-     */
-    public void setUsername(String newUsername) { username = newUsername; }
-
-    /**
      * Getter for password
      * @return User's password
      */
     public String getPassword() { return password; }
 
     /**
+<<<<<<< HEAD
      * Setter for password
      * @param newPassword new password for User
      */
@@ -41,16 +36,12 @@ public class User implements Parcelable, Serializable {
     public boolean validatePassword(String newPassword) { return (newPassword.length() > 6); }
 
     /**
+=======
+>>>>>>> d7f8fc43806b9dd2018f69628ca477bc16956977
      * Getter for name
      * @return User's name
      */
     public String getName() { return name; }
-
-    /**
-     * Setter for name
-     * @param newName new name for User
-     */
-    public void setName(String newName) { name = newName; }
 
     /**
      * 2-arg constructor that creates a User with an email and password

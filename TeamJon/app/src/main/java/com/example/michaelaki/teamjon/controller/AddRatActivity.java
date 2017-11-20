@@ -66,7 +66,7 @@ public class AddRatActivity extends Activity {
     /**
      * Go back to the LaunchActivity screen
      */
-    public void goBack() {
+    private void goBack() {
         Intent intent = new Intent(this, LaunchActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
@@ -76,7 +76,7 @@ public class AddRatActivity extends Activity {
      * If there are form errors (invalid #s for lat/long, invalid date/location), the
      * errors are presented and no activity is made
      */
-    public void add() {
+    private void add() {
         boolean notValidNumber = true;
         EditText latitude = (EditText) findViewById(R.id.latitude);
         try {

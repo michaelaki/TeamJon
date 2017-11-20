@@ -24,11 +24,9 @@ public class UserTypeTest extends ActivityTestRule {
     public void getUserType() throws Exception {
         launchActivity(new Intent());
         RegisterActivity activity = (RegisterActivity) getActivity();
-        boolean isAdmin = true;
-        boolean notAdmin = false;
-        assertTrue("User type should be admin", activity.getUserType(isAdmin) instanceof Admin);
-        assertTrue("User type should not be admin but user", !(activity.getUserType(notAdmin) instanceof Admin));
-        assertTrue("User type should be user", activity.getUserType(notAdmin) instanceof User);
+        assertTrue("User type should be admin", activity.getUserType(true) instanceof Admin);
+        assertTrue("User type should not be admin but user", !(activity.getUserType(false) instanceof Admin));
+        assertTrue("User type should be user", activity.getUserType(false) != null);
     }
 
 }

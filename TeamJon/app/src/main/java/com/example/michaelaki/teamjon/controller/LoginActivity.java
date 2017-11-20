@@ -71,7 +71,7 @@ public class LoginActivity extends Activity {
     /**
      * Go back to the Welcome screen
      */
-    public void returnToWelcomeScreen() {
+    private void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
@@ -111,8 +111,8 @@ public class LoginActivity extends Activity {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (dataSnapshot.getKey().equals(mEmailView.getText().toString())) {
-                        foundPassword = dataSnapshot.child("Password").getValue().toString();
-                        foundName = dataSnapshot.child("Name").getValue().toString();
+                        foundPassword = (String) dataSnapshot.child("Password").getValue();
+                        foundName = (String) dataSnapshot.child("Name").getValue();
                         found = true;
                         if (foundPassword.equals(mPasswordView.getText().toString())) {
                             login();

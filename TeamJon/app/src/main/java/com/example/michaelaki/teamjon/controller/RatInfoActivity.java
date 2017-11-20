@@ -61,7 +61,7 @@ public class RatInfoActivity extends Activity {
     /**
      * Go back to the ListActivity screen
      */
-    public void goBack() {
+    private void goBack() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }

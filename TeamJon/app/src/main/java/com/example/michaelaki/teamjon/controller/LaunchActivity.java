@@ -19,9 +19,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class LaunchActivity extends Activity {
-    FirebaseDatabase database;
-    String johnsRef;
-    int id;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class LaunchActivity extends Activity {
         reference.child("num_results").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                setId(Integer.parseInt(dataSnapshot.getValue().toString()));
+                setId(Integer.parseInt((String) dataSnapshot.getValue()));
 
             }
 
@@ -92,7 +90,7 @@ public class LaunchActivity extends Activity {
     /**
      * Go back to the screen to add a new sighting
      */
-    public void goToAddRat() {
+    private void goToAddRat() {
 
 
         Intent intent = new Intent(this, AddRatActivity.class);
@@ -102,14 +100,14 @@ public class LaunchActivity extends Activity {
     /**
      * Logs the user out and go back to the welcome screen
      */
-    public void logOut() {
+    private void logOut() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
     /**
      * Go to the data screen
      */
-    public void goToDataScreen() {
+    private void goToDataScreen() {
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
@@ -118,7 +116,7 @@ public class LaunchActivity extends Activity {
      * Set the id for the next rat to be added the the database
      * @param num
      */
-    public void setId(int num) {
+    private void setId(int num) {
 
         id = num;
     }
@@ -126,7 +124,7 @@ public class LaunchActivity extends Activity {
     /**
      * Go to the map screen
      */
-    public void goToMap() {
+    private void goToMap() {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
 
@@ -135,7 +133,7 @@ public class LaunchActivity extends Activity {
     /**
      * Go to graph screen
      */
-    public void goToGraph() {
+    private void goToGraph() {
         Intent intent = new Intent(this, GraphActivity.class);
         startActivity(intent);
     }
