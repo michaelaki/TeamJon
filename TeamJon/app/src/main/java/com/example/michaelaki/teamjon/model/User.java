@@ -38,6 +38,8 @@ public class User implements Parcelable, Serializable {
      */
     public void setPassword(String newPassword) { password = newPassword; }
 
+    public boolean validatePassword(String newPassword) { return (newPassword.length() > 6); }
+
     /**
      * Getter for name
      * @return User's name
