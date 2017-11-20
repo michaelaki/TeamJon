@@ -26,8 +26,6 @@ import com.google.firebase.database.ValueEventListener;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends Activity {
-    
-
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
