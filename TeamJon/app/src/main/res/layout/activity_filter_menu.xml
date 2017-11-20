@@ -15,6 +15,7 @@
         android:layout_height="75dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
+        android:minDate="01/01/2016"
         android:endYear="2017" />
 
     <TextView
@@ -29,6 +30,7 @@
         android:layout_height="75dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
+        android:minDate="01/01/2016"
         android:endYear="2017" />
 
     <Button

@@ -32,6 +32,7 @@ public class LaunchActivity extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println(dataSnapshot.getValue());
+                //noinspection ConstantConditions
                 setId(Integer.parseInt((Long.toString((Long)dataSnapshot.getValue()))));
                 System.out.println(id);
             }

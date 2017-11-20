@@ -23,11 +23,7 @@ public class Filter implements Serializable {
         return startDate;
     }
 
-    public void setEndDate(long endDate) {
-        this.endDate = endDate;
-    }
+    public void setEndDate(long endDate) { this.endDate = endDate; }
 
-    public void setStartDate(long startDate) {
-        this.startDate = startDate;
-    }
+    public void setStartDate(long startDate) { this.startDate = startDate; }
 }
