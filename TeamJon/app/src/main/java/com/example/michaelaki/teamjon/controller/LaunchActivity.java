@@ -31,8 +31,9 @@ public class LaunchActivity extends Activity {
         reference.child("num_results").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                setId(Integer.parseInt((String) dataSnapshot.getValue()));
-
+                System.out.println(dataSnapshot.getValue());
+                setId(Integer.parseInt((Long.toString((Long)dataSnapshot.getValue()))));
+                System.out.println(id);
             }
 
             @Override

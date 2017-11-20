@@ -71,17 +71,12 @@ public class AddRatActivity extends Activity {
     private void add() {
         boolean notValidNumber = true;
         EditText latitude = (EditText) findViewById(R.id.latitude);
-        try {
-            rat.setLatitude(Double.parseDouble(latitude.getText().toString()));
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Must use numbers for latitude and longitude", Toast.LENGTH_SHORT).show();
+        if (!isValidLatLng(latitude.getText().toString(), true)) {
             notValidNumber = false;
         }
+
         EditText longitude = (EditText) findViewById(R.id.longitude);
-        try {
-            rat.setLongitude(Double.parseDouble(longitude.getText().toString()));
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Must use numbers for latitude and longitude", Toast.LENGTH_SHORT).show();
+        if (!isValidLatLng(longitude.getText().toString(), false)) {
             notValidNumber = false;
         }
         if (notValidNumber) {
@@ -144,7 +139,36 @@ public class AddRatActivity extends Activity {
             Intent intent = new Intent(this, LaunchActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
+        } else {
+            Toast.makeText(this, "Must use valid numbers for latitude and longitude", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    /**
+     * Checks if the lat/lng value is a valid lat/lng value and if it is, sets the rat's lat/lng
+     * value to it.
+     * @param latLng the lat/lng value entered by the user
+     * @param latitude whether or not the entered value was for the latitude or longitude value
+     * @return whether or not the value entered by the user was a valid lat/lng value
+     */
+    public boolean isValidLatLng(String latLng, boolean latitude) {
+        try {
+            if (latitude) {
+                rat.setLatitude(Double.parseDouble(latLng));
+                if (rat.getLatitude() < -180 || rat.getLatitude() > 180) {
+                    return false;
+                }
+            } else {
+                rat.setLongitude(Double.parseDouble(latLng));
+                if (rat.getLongitude() < -180 || rat.getLongitude() > 180) {
+                    return false;
+                }
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
 
