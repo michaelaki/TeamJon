@@ -14,7 +14,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,7 +30,7 @@ import java.util.Collections;
 public class GraphActivity extends AppCompatActivity {
 
     private final Filter filter = new Filter();
-    private HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();   //key, value is date, number
+    private HashMap<Integer, Integer> map = new HashMap<>();   //key, value is date, number
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +49,14 @@ public class GraphActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                map = new HashMap<Integer, Integer>();
+                map = new HashMap<>();
                 DatePicker startDate = (DatePicker) findViewById(R.id.fromDatePicker);
                 String startDateString = startDate.getMonth() + 1 + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
                 DatePicker endDate = (DatePicker) findViewById(R.id.toDatePicker);
                 String endDateString = endDate.getMonth() + 1 + "/" + endDate.getDayOfMonth() + "/" + endDate.getYear();
                 SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-                Date startDateFormatted = new Date();
-                Date endDateFormatted = new Date();
+                Date startDateFormatted;
+                Date endDateFormatted;
                 try {
                     startDateFormatted = format.parse(startDateString);
                     endDateFormatted = format.parse(endDateString);
@@ -75,14 +74,14 @@ public class GraphActivity extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                       @Override
                       public void onDataChange(DataSnapshot snapshot) {
-                          List<RatSighting> rats = new ArrayList();
+                          ArrayList<RatSighting> rats = new ArrayList<>();
 
                           for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                               RatSighting rat = new RatSighting();
                               if (dataSnapshot.child("Created Date").getValue() != null) {
                                   rat.setDate((String) dataSnapshot.child("Created Date").getValue());
                                   SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-                                  Date startDateFormatted = new Date();
+                                  Date startDateFormatted;
                                   try {
                                       int index = rat.getDate().indexOf(' ');
                                       startDateFormatted = format.parse(rat.getDate().substring(0, index));
@@ -138,8 +137,8 @@ public class GraphActivity extends AppCompatActivity {
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
         //convert map to a list of entries
-        List<Entry> entries = new ArrayList<Entry>();
-        List<Integer> keys = new ArrayList<Integer>();
+        List<Entry> entries = new ArrayList<>();
+        List<Integer> keys = new ArrayList<>();
         for (int key : map.keySet()) {
             keys.add(key);
         }

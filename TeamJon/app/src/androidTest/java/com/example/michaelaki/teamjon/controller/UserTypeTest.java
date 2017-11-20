@@ -3,9 +3,7 @@ package com.example.michaelaki.teamjon.controller;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.example.michaelaki.teamjon.model.Admin;
-import com.example.michaelaki.teamjon.model.User;
 import android.content.Intent;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

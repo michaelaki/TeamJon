@@ -8,14 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:layout_marginBottom="16dp"/>
     <TextView
         android:id="@+id/adminText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Admin"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginBottom="8dp"
         android:visibility="invisible"/>
     <Button

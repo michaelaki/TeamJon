@@ -10,9 +10,9 @@ import java.io.Serializable;
  */
 
 public class User implements Parcelable, Serializable {
-    private String username;
-    private String password;
-    private String name;
+    private final String username;
+    private final String password;
+    private final String name;
 
     /**
      * Getter for username
@@ -26,21 +26,14 @@ public class User implements Parcelable, Serializable {
      */
     public String getPassword() { return password; }
 
-    /**
-     * Setter for password
-     * @param newPassword new password for User
-     */
-    public void setPassword(String newPassword) { password = newPassword; }
+
 
     /**
      * Validates that password greater than 6 characters
      * @param newPassword new password for User
      */
-    protected boolean validatePassword(String newPassword) {
-        if (newPassword == null) {
-            return false;
-        }
-        return (newPassword.length() > 6);
+    public boolean validatePassword(String newPassword) {
+        return newPassword != null && (newPassword.length() > 6);
     }
 
     /**

@@ -14,6 +14,7 @@ import com.example.michaelaki.teamjon.model.Filter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * File made by michaelaki on 10/31/17.
@@ -55,9 +56,9 @@ public class FilterActivity extends Activity {
                 String startDateString = startDate.getMonth() + 1 + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
                 DatePicker endDate = (DatePicker) findViewById(R.id.toDatePicker);
                 String endDateString = endDate.getMonth() + 1 + "/" + endDate.getDayOfMonth() + "/" + endDate.getYear();
-                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-                Date startDateFormatted = new Date();
-                Date endDateFormatted = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+                Date startDateFormatted;
+                Date endDateFormatted;
                 try {
 
                     startDateFormatted = format.parse(startDateString);

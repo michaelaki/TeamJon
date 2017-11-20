@@ -3,26 +3,17 @@ package com.example.michaelaki.teamjon.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.michaelaki.teamjon.R;
 import com.example.michaelaki.teamjon.model.Admin;
 import com.example.michaelaki.teamjon.model.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * File made by michaelaki on 9/13/17.
@@ -33,7 +24,7 @@ public class RegisterActivity extends Activity {
     private EditText passwordField;
     private EditText nameField;
 
-    private User user;
+
     private boolean admin = false;
 
     @Override
@@ -114,6 +105,7 @@ public class RegisterActivity extends Activity {
      * Add new user to database
      */
     private void register() {
+        User user;
         user = getUserType(admin);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference().child("users");

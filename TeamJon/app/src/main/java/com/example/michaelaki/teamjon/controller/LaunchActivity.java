@@ -114,7 +114,7 @@ public class LaunchActivity extends Activity {
 
     /**
      * Set the id for the next rat to be added the the database
-     * @param num
+     * @param num the number that the id will be set to
      */
     private void setId(int num) {
 

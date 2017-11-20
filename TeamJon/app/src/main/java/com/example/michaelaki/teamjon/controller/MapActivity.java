@@ -1,6 +1,6 @@
 package com.example.michaelaki.teamjon.controller;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -27,7 +27,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * File made by michaelaki on 10/25/17.
@@ -102,7 +101,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             markerQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    List<RatSighting> rats = new ArrayList();
+                    ArrayList<RatSighting> rats = new ArrayList<>();
 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         RatSighting rat = new RatSighting();
@@ -115,7 +114,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                         if (dataSnapshot.child("Created Date").getValue() != null) {
                             rat.setDate((String) dataSnapshot.child("Created Date").getValue());
                             SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-                            Date startDateFormatted = new Date();
+                            Date startDateFormatted;
                             try {
                                 int index = rat.getDate().indexOf(' ');
 
@@ -169,7 +168,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             markerQuery.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    List<RatSighting> rats = new ArrayList();
+                    ArrayList<RatSighting> rats = new ArrayList<>();
 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         RatSighting rat = new RatSighting();

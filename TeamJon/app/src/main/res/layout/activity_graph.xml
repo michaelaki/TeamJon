@@ -9,7 +9,7 @@
         android:layout_height="30dp"
         android:text="Select a date range to filter"
         android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/fromDateText"

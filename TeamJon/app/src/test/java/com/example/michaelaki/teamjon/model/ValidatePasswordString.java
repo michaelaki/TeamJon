@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by varunsubbiah on 11/19/17.
+ * Was created by varunsubbiah on 11/19/17.
  */
 
 public class ValidatePasswordString {

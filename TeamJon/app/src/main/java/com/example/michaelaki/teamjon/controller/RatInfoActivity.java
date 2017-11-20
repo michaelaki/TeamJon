@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.example.michaelaki.teamjon.R;
 import com.example.michaelaki.teamjon.model.RatSighting;
 
-import java.util.List;
-
 /**
  * File made by michaelaki on 10/11/17.
  */
