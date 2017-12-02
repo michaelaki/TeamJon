@@ -2,7 +2,8 @@ package com.example.michaelaki.teamjon.model;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import android.util.Log;
-
+import android.app.NotificationManager;
+import android.support.v4.app.NotificationCompat;
 
 /**
  * Created by JonathanChen on 12/2/17.
@@ -16,6 +17,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // If the application is in the foreground handle both data and notification messages here.
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated.
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(android.R.color.transparent)
+                .setContentTitle("Rat Bois!")
+                .setContentText("We miss you! Add another rat sighting! Please...");
+        int mNotificationId = 001;
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
     }
