@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.michaelaki.teamjon.R;
+import com.example.michaelaki.teamjon.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -38,7 +40,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.username);
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -81,7 +83,7 @@ public class LoginActivity extends Activity {
      */
     private void login() {
         Intent intent = new Intent(this, LaunchActivity.class);
-        intent.putExtra("Username", mEmailView.getText().toString());
+        intent.putExtra("Email", mEmailView.getText().toString());
         intent.putExtra("Name", foundName);
         startActivity(intent);
     }
@@ -89,8 +91,15 @@ public class LoginActivity extends Activity {
     /**
      * Print a message to the screen telling the user that they input invalid information
      */
-    private void makeToast() {
-        Toast.makeText(this, "Invalid Username and/or Password", Toast.LENGTH_SHORT).show();
+    private void dneToast() {
+        Toast.makeText(this, "Invalid Email and/or Password", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Print a message to the screen telling the user that their account is locked
+     */
+    private void lockedToast() {
+        Toast.makeText(this, "This account is locked, please contact an admin", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -104,7 +113,7 @@ public class LoginActivity extends Activity {
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         Query reference = database.getReference().child("users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,14 +124,19 @@ public class LoginActivity extends Activity {
                         foundName = (String) dataSnapshot.child("Name").getValue();
                         found = true;
                         if (foundPassword.equals(mPasswordView.getText().toString())) {
-                            login();
+                            if ((int) dataSnapshot.child("Attempts").getValue() < 5) {
+                                login();
+                            } else {
+                                lockedToast();
+                            }
                         } else {
+                            database.getReference().child("users").child("Attempts").setValue((int) dataSnapshot.child("Attempts").getValue() + 1);
                             found = false;
                         }
                     }
                 }
                 if (!found) {
-                    makeToast();
+                    dneToast();
                 }
             }
 

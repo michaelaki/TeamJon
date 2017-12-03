@@ -8,12 +8,12 @@ public class Admin extends User {
     /**
      * 2-arg constructor that creates a Admin with an username and password
      *
-     * @param newUsername    Admin's username
+     * @param newEmail    Admin's username
      * @param newPassword Admin's password
-     * @param newName Admin's name
+     * @param newName     Admin's name
      */
-    public Admin(String newUsername, String newPassword, String newName) {
-        super(newUsername, newPassword, newName);
+    public Admin(String newEmail, String newPassword, String newName) {
+        super(newEmail, newPassword, newName);
     }
 
     /**

@@ -32,7 +32,7 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        emailField = (EditText) findViewById(R.id.username_text);
+        emailField = (EditText) findViewById(R.id.email_text);
         passwordField = (EditText) findViewById(R.id.password_text);
         nameField = (EditText) findViewById(R.id.name_text);
         /*passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -108,18 +108,24 @@ public class RegisterActivity extends Activity {
     private void register() {
         User user;
         user = getUserType(admin);
-        if (user.validatePassword(user.getPassword())) {
+        boolean validPassword = user.validatePassword(user.getPassword());
+        boolean validEmail = user.validateEmail(user.getEmail());
+        if (validPassword && validEmail) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference reference = database.getReference().child("users");
-            reference.child(user.getUsername()).push();
-            reference.child(user.getUsername()).child("Name").push();
-            reference.child(user.getUsername()).child("Name").setValue(user.getName());
-            reference.child(user.getUsername()).child("Password").push();
-            reference.child(user.getUsername()).child("Password").setValue(user.getPassword());
+            reference.child(user.getEmail()).push();
+            reference.child(user.getEmail()).child("Name").push();
+            reference.child(user.getEmail()).child("Name").setValue(user.getName());
+            reference.child(user.getEmail()).child("Password").push();
+            reference.child(user.getEmail()).child("Password").setValue(user.getPassword());
+            reference.child(user.getEmail()).child("Attempts").push();
+            reference.child(user.getEmail()).child("Attempts").setValue(0);
 
             returnToWelcomeScreen();
-        } else {
+        } else if (!validPassword){
             Toast.makeText(this, "Password must be greater than 6 characters", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Must enter a valid email address", Toast.LENGTH_SHORT).show();
         }
     }
 

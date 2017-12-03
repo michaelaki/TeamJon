@@ -2,6 +2,7 @@ package com.example.michaelaki.teamjon.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import java.io.Serializable;
 
@@ -10,15 +11,15 @@ import java.io.Serializable;
  */
 
 public class User implements Parcelable, Serializable {
-    private final String username;
+    private final String email;
     private final String password;
     private final String name;
 
     /**
-     * Getter for username
-     * @return User's username
+     * Getter for email
+     * @return User's email
      */
-    public String getUsername() { return username; }
+    public String getEmail() { return email; }
 
     /**
      * Getter for password
@@ -26,14 +27,16 @@ public class User implements Parcelable, Serializable {
      */
     public String getPassword() { return password; }
 
-
-
     /**
      * Validates that password greater than 6 characters
      * @param newPassword new password for User
      */
     public boolean validatePassword(String newPassword) {
         return newPassword != null && (newPassword.length() > 6);
+    }
+
+    public boolean validateEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     /**
@@ -44,12 +47,12 @@ public class User implements Parcelable, Serializable {
 
     /**
      * 2-arg constructor that creates a User with an email and password
-     * @param newUsername User's email
+     * @param newEmail User's email
      * @param newPassword User's password
      * @param newName User's name
      */
-    public User(String newUsername, String newPassword, String newName) {
-        username = newUsername;
+    public User(String newEmail, String newPassword, String newName) {
+        email = newEmail;
         password = newPassword;
         name = newName;
     }
@@ -59,12 +62,12 @@ public class User implements Parcelable, Serializable {
      * @return a String containing the User's email and password
      */
     @Override
-    public String toString() { return name + " | " + username + " | " + password; }
+    public String toString() { return name + " | " + email + " | " + password; }
 
 
     /* ***************************************************** */
     private User(Parcel in) {
-        username = in.readString();
+        email = in.readString();
         password = in.readString();
         name = in.readString();
     }
@@ -76,7 +79,7 @@ public class User implements Parcelable, Serializable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(username);
+        dest.writeString(email);
         dest.writeString(password);
         dest.writeString(name);
     }

@@ -129,11 +129,11 @@ public class AddRatActivity extends Activity {
             keyReference.child("Incident Zip").push();
             keyReference.child("Incident Zip").setValue(rat.getIncidentZip());
             keyReference.child("Latitude").push();
-            keyReference.child("Latitude").setValue(rat.getLatitude());
+            keyReference.child("Latitude").setValue(Double.toString(rat.getLatitude()));
             keyReference.child("Location Type").push();
             keyReference.child("Location Type").setValue(rat.getLocationType());
             keyReference.child("Longitude").push();
-            keyReference.child("Longitude").setValue(rat.getLongitude());
+            keyReference.child("Longitude").setValue(Double.toString(rat.getLongitude()));
             keyReference.child("Unique Key").push();
             keyReference.child("Unique Key").setValue(rat.getKey());
             Intent intent = new Intent(this, LaunchActivity.class);

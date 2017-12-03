@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:text="Enter Your User Name and Password"
+        android:text="Enter Your Email and Password"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -24,13 +24,13 @@
         android:layout_weight="0.03" />
 
     <EditText
-        android:id="@+id/username_text"
+        android:id="@+id/email_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="16dp"
-        android:inputType="textPersonName"
-        android:hint="Username"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
         android:layout_weight="0.03" />
 
     <EditText
