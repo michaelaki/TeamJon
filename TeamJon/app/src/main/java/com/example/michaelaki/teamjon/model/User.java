@@ -14,6 +14,7 @@ public class User implements Parcelable, Serializable {
     private final String email;
     private final String password;
     private final String name;
+    private int attempts;
 
     /**
      * Getter for email
@@ -26,6 +27,10 @@ public class User implements Parcelable, Serializable {
      * @return User's password
      */
     public String getPassword() { return password; }
+
+    public int getAttempts() { return attempts; }
+
+    public void setAttempts(int num) { attempts = num; }
 
     /**
      * Validates that password greater than 6 characters
@@ -55,6 +60,7 @@ public class User implements Parcelable, Serializable {
         email = newEmail;
         password = newPassword;
         name = newName;
+        attempts = 0;
     }
 
     /**
@@ -62,7 +68,7 @@ public class User implements Parcelable, Serializable {
      * @return a String containing the User's email and password
      */
     @Override
-    public String toString() { return name + " | " + email + " | " + password; }
+    public String toString() { return name + ", " + email + ", " + password; }
 
 
     /* ***************************************************** */
@@ -70,6 +76,7 @@ public class User implements Parcelable, Serializable {
         email = in.readString();
         password = in.readString();
         name = in.readString();
+        attempts = in.readInt();
     }
 
     @Override
@@ -82,6 +89,7 @@ public class User implements Parcelable, Serializable {
         dest.writeString(email);
         dest.writeString(password);
         dest.writeString(name);
+        dest.writeInt(attempts);
     }
 
     public static final Parcelable.Creator<User> CREATOR

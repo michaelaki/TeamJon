@@ -34,6 +34,7 @@ public class LoginActivity extends Activity {
     private String foundPassword;
     private String foundName;
     private boolean found;
+    private String admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class LoginActivity extends Activity {
      */
     private void login() {
         Intent intent = new Intent(this, LaunchActivity.class);
-        intent.putExtra("Email", mEmailView.getText().toString());
+        intent.putExtra("Admin", admin);
         intent.putExtra("Name", foundName);
         startActivity(intent);
     }
@@ -115,7 +116,7 @@ public class LoginActivity extends Activity {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         Query reference = database.getReference().child("users");
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -124,13 +125,14 @@ public class LoginActivity extends Activity {
                         foundName = (String) dataSnapshot.child("Name").getValue();
                         found = true;
                         if (foundPassword.equals(mPasswordView.getText().toString())) {
-                            if ((int) dataSnapshot.child("Attempts").getValue() < 5) {
+                            if ((int) (long) dataSnapshot.child("Attempts").getValue() < 5) {
+                                admin = (String) dataSnapshot.child("Admin").getValue();
                                 login();
                             } else {
                                 lockedToast();
                             }
                         } else {
-                            database.getReference().child("users").child("Attempts").setValue((int) dataSnapshot.child("Attempts").getValue() + 1);
+                            database.getReference().child("users").child(mEmailView.getText().toString()).child("Attempts").setValue((int) (long) dataSnapshot.child("Attempts").getValue() + 1);
                             found = false;
                         }
                     }

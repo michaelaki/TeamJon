@@ -26,6 +26,10 @@ public class LaunchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("Name");
+        String admin =  intent.getStringExtra("Admin");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference reference = database.getReference();
         reference.child("num_results").addValueEventListener(new ValueEventListener() {
@@ -42,9 +46,6 @@ public class LaunchActivity extends Activity {
 
             }
         });
-
-        Intent intent = getIntent();
-        String user = intent.getStringExtra("Name");
 
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +87,22 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button usersButton = (Button) findViewById(R.id.usersButton);
+        usersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewUsers();
+            }
+        });
+
+        if (admin.equals("true")) {
+            usersButton.setVisibility(View.VISIBLE);
+        } else {
+            usersButton.setVisibility(View.GONE);
+        }
+
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
-        welcomeText.setText("Welcome " + user + "!");
+        welcomeText.setText("Welcome " + name + "!");
     }
     /**
      * Go back to the screen to add a new sighting
@@ -137,6 +152,14 @@ public class LaunchActivity extends Activity {
      */
     private void goToGraph() {
         Intent intent = new Intent(this, GraphActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Go to view users screen
+     */
+    private void viewUsers() {
+        Intent intent = new Intent(this, UserActivity.class);
         startActivity(intent);
     }
 }

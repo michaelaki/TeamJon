@@ -41,6 +41,13 @@
         android:text="See Graphs" />
 
     <Button
+        android:id="@+id/usersButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="View Users" />
+
+    <Button
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
