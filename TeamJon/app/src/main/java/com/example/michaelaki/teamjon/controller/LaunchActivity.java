@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LaunchActivity extends Activity {
     private int id;
+    static String admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class LaunchActivity extends Activity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("Name");
-        String admin =  intent.getStringExtra("Admin");
+        admin =  intent.getStringExtra("Admin");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference reference = database.getReference();

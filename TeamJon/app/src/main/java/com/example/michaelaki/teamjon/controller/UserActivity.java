@@ -100,6 +100,7 @@ public class UserActivity extends Activity {
      */
     private void goBack() {
         Intent intent = new Intent(this, LaunchActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
